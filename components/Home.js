@@ -14,13 +14,13 @@ import colors from "./../assets/colors/colors"
 import Feather from "react-native-vector-icons/Feather"
 import Entypo from "react-native-vector-icons/Entypo"
 import activitiesData from "./../assets/data/activitiesData"
-import discoverCategoriesData from "./../assets/data/discoverCategoriesData"
 import learnMoreData from "./../assets/data/learnMoreData"
 import discoverData from "./../assets/data/discoverData"
 import Profile from "../assets/images/person.png"
 
 Feather.loadFont()
 Entypo.loadFont()
+
 const Home = ({ navigation }) => {
    const renderDiscoverItem = ({ item }) => {
       return (
@@ -142,7 +142,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      color: colors.white
+      backgroundColor: colors.cream
    },
    menuWrapper: {
       marginHorizontal: 20,
