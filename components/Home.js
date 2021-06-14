@@ -24,7 +24,9 @@ Entypo.loadFont()
 const Home = ({ navigation }) => {
    const renderDiscoverItem = ({ item }) => {
       return (
-         <TouchableOpacity>
+         <TouchableOpacity
+            onPress={() => navigation.navigate("Details", { item: item })}
+         >
             <ImageBackground
                source={item.image}
                style={styles.discoverItem}
@@ -39,6 +41,35 @@ const Home = ({ navigation }) => {
                </View>
             </ImageBackground>
          </TouchableOpacity>
+      )
+   }
+
+   const renderActivityItem = ({ item }) => {
+      return (
+         <View
+            style={[
+               styles.activityItem,
+               { marginLeft: item.id === "activities-1" ? 20 : 0 }
+            ]}
+         >
+            <Image style={styles.activityItemImage} source={item.image} />
+            <Text style={styles.activityItemTitle}>{item.title}</Text>
+         </View>
+      )
+   }
+
+   const renderLearnMoreItem = ({ item }) => {
+      return (
+         <ImageBackground
+            source={item.image}
+            style={[
+               styles.learnMoreImage,
+               { marginLeft: item.id === "learnMore-1" ? 20 : 0 }
+            ]}
+            imageStyle={styles.learnMoreImageStyle}
+         >
+            <Text style={styles.learnMoreTitle}>{item.title}</Text>
+         </ImageBackground>
       )
    }
    return (
@@ -70,6 +101,34 @@ const Home = ({ navigation }) => {
                      data={discoverData}
                      keyExtractor={(item) => item.id}
                      renderItem={renderDiscoverItem}
+                     horizontal
+                     showsHorizontalScrollIndicator={false}
+                  />
+               </View>
+            </View>
+
+            {/* Activity Section*/}
+            <View style={styles.activitiesWrapper}>
+               <Text style={styles.activitiesText}>Activities</Text>
+               <View style={styles.activityItemsWrapper}>
+                  <FlatList
+                     data={activitiesData}
+                     keyExtractor={(item) => item.id}
+                     renderItem={renderActivityItem}
+                     horizontal
+                     showsHorizontalScrollIndicator={false}
+                  />
+               </View>
+            </View>
+
+            {/* Learn More Section */}
+            <View style={styles.learnMoreWrapper}>
+               <Text style={styles.learnMoreText}>Learn More</Text>
+               <View style={styles.learnMoreItemsWrapper}>
+                  <FlatList
+                     data={learnMoreData}
+                     keyExtractor={(item) => item.id}
+                     renderItem={renderLearnMoreItem}
                      horizontal
                      showsHorizontalScrollIndicator={false}
                   />
@@ -144,6 +203,55 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       color: colors.white,
       fontFamily: "Lato-Regular"
+   },
+   activitiesWrapper: {
+      marginTop: 20
+   },
+   activitiesText: {
+      fontFamily: "Lato-Bold",
+      fontSize: 24,
+      color: colors.black,
+      marginLeft: 20,
+      marginBottom: 20
+   },
+   activityItem: {
+      alignItems: "center",
+      justifyContent: "flex-end",
+      marginRight: 20
+   },
+   activityItemTitle: {
+      marginTop: 5,
+      color: colors.gray,
+      fontFamily: "Lato-Bold"
+   },
+   learnMoreWrapper: {
+      marginTop: 20
+   },
+   learnMoreText: {
+      marginLeft: 20,
+      fontFamily: "Lato-Bold",
+      fontSize: 24,
+      color: colors.black,
+      marginBottom: 20
+   },
+   learnMoreItemsWrapper: {
+      marginBottom: 20
+   },
+   learnMoreImage: {
+      width: 150,
+      height: 180,
+      marginRight: 20,
+      justifyContent: "flex-end"
+   },
+   learnMoreImageStyle: {
+      borderRadius: 10
+   },
+   learnMoreTitle: {
+      marginBottom: 20,
+      marginLeft: 10,
+      fontFamily: "Lato-Bold",
+      fontSize: 16,
+      color: colors.white
    }
 })
 
