@@ -82,7 +82,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
    tabBar: {
-      backgroundColor: colors.white,
+      backgroundColor: colors.cream,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20
    }
